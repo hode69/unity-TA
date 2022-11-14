@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Belajar.unity
     guid: c68f42f897da14345a964d52a81ccb73
   - enabled: 1
-    path: Assets/Scenes/3D.unity
+    path: Assets/Scenes/Simulasi.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Lanjutan Belajar.unity
+    guid: 222f195834a8cce4591769bde239f5f9
   m_configObjects: {}
