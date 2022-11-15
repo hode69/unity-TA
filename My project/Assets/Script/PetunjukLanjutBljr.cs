@@ -3,15 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Bljr : MonoBehaviour
+public class PetunjukLanjutBljr : MonoBehaviour
 {
+    // Start is called before the first frame update
     public void Kembali()
     {
-        SceneManager.LoadScene(0);
-    }
-
-    public void Lanjut()
-    {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(1);
     }
 }
