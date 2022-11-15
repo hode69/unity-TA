@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NextprevObjBljr : MonoBehaviour
+public class NextPrevObjAnim : MonoBehaviour
 {
     public GameObject[] OBJ;
     int indexOBJ;
@@ -28,7 +28,7 @@ public class NextprevObjBljr : MonoBehaviour
                  
     }
 
-    public void Next()
+    public void OBJNext()
     {
         indexOBJ += 1;
 
@@ -41,7 +41,7 @@ public class NextprevObjBljr : MonoBehaviour
         Debug.Log(indexOBJ);
     }
 
-    public void Previous()
+    public void OBJPrevious()
     {
         indexOBJ -= 1;
 

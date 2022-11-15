@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NextprevTxtBljr : MonoBehaviour
+public class NextPrevTxtAnim : MonoBehaviour
 {
     public GameObject[] TXT;
     int indexTXT;
@@ -28,7 +28,7 @@ public class NextprevTxtBljr : MonoBehaviour
                  
     }
 
-    public void Next()
+    public void TXTNext()
     {
         indexTXT += 1;
 
@@ -41,7 +41,7 @@ public class NextprevTxtBljr : MonoBehaviour
         Debug.Log(indexTXT);
     }
 
-    public void Previous()
+    public void TXTPrevious()
     {
         indexTXT -= 1;
 
@@ -51,6 +51,6 @@ public class NextprevTxtBljr : MonoBehaviour
             TXT[indexTXT].gameObject.SetActive(true);
         }
 
-        Debug.Log(indexTXT);
+        Debug.Log(indexTXT); 
     }
 }
