@@ -18,9 +18,9 @@ public class GyroScope : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        if (SystemInfo.supportsGyroscope)
+        if (SystemInfo.supportsGyroscope && Time.timeScale==1)
         {
             transform.localRotation = GyroToUnity (Input.gyro.attitude);
 
