@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "ec1f9a8e7d15",
         "name": "com.DefaultCompany.Myproject",
-        "processId": 5030,
+        "processId": 9636,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -42,6 +42,18 @@
             "deviceId": "ec1f9a8e7d15",
             "name": "com.DefaultCompany.Myproject",
             "processId": 5030,
+            "exited": false
+        },
+        {
+            "deviceId": "ec1f9a8e7d15",
+            "name": "com.DefaultCompany.Myproject",
+            "processId": 30458,
+            "exited": false
+        },
+        {
+            "deviceId": "ec1f9a8e7d15",
+            "name": "com.DefaultCompany.Myproject",
+            "processId": 9636,
             "exited": false
         }
     ],
