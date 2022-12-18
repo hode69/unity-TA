@@ -24,7 +24,7 @@ public class GyroScope : MonoBehaviour
         {
             transform.localRotation = GyroToUnity (Input.gyro.attitude);
 
-            Debug.Log("Gyro Data: " + Input.gyro.attitude);
+            //Debug.Log("Gyro Data: " + Input.gyro.attitude);
         }
     }
 
