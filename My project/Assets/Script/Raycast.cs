@@ -16,15 +16,13 @@ public class Raycast : MonoBehaviour
             selectionRenderer.material = defaultMaterial;
             _selection = null;
         }
-
-        Vector3 pos = new Vector3(0.5f, 0.5f, 0);
         
-        var ray = Camera.main.ScreenPointToRay(pos);
+        var ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 1));
 
         RaycastHit hit;
-        if (Physics.Raycast(ray,out hit))
+        if (Physics.Raycast(ray,out hit, Mathf.Infinity))
         {
-            Debug.Log(hit.collider.gameObject.name + "Hit Something");
+            Debug.Log(hit.collider.gameObject.name + " Hit Something");
             var selection = hit.transform;
 
             if (selection.CompareTag(selectableTag))
@@ -37,7 +35,6 @@ public class Raycast : MonoBehaviour
             }
 
             _selection = selection;
-            
         }
     }
 }
