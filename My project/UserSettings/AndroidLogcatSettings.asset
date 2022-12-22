@@ -1,9 +1,9 @@
 {
     "m_SelectedDeviceId": "ec1f9a8e7d15",
     "m_SelectedPackage": {
-        "deviceId": "",
-        "name": "",
-        "processId": 0,
+        "deviceId": "ec1f9a8e7d15",
+        "name": "com.DefaultCompany.Myproject",
+        "processId": 11492,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -42,6 +42,12 @@
             "deviceId": "ec1f9a8e7d15",
             "name": "com.android.settings",
             "processId": 13648,
+            "exited": false
+        },
+        {
+            "deviceId": "ec1f9a8e7d15",
+            "name": "com.DefaultCompany.Myproject",
+            "processId": 11492,
             "exited": false
         }
     ],

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Selectable
   - TidakSelect
+  - Opsi
   layers:
   - Default
   - TransparentFX
