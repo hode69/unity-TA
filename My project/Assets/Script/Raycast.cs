@@ -16,34 +16,36 @@ public class Raycast : MonoBehaviour
     [SerializeField] private Material hijau;
 
     public Transform selection, cameraTarget, dump, cam2, Gyro, Option, tembak;
-    public Color warnaAwal;
     private Transform _selection, _option;
-    public TextMeshProUGUI txt, timeTXT; 
-    public int kesalahan;
-    float currentTime = 0f;
+    public Color warnaAwal;
+    public TextMeshProUGUI txt, timeTXT;
 
-    bool startTimer;
-
-    public GameObject CPU, FAN, RAM1,RAM2, PSU, HDD, MOBOCASE, MOBOCLONE, VGA, CASE, CASECLONE, WorldUI;
+    public GameObject CPU, FAN, RAM1,RAM2, PSU, HDD, MOBOCASE, VGA, CASE, GOParent, GrabParent;
     public GameObject KFan, KFP, K24, K12, K8, KPowSata, KSATA;
     public GameObject KFanPasang, KFPPasang, K24Pasang, K12Pasang, K8Pasang, KPowSataPasang, KSATAPasang;
     public GameObject OP1, OP2, OP3, OP4, OP5, OP6;
-    public GameObject SELECT, PLACE, Prompt, Hasil, panel1, panel2, panel3, panel4;
+    public GameObject SELECT, PLACE, Prompt, Hasil, panel1, panel2, panel3, panel4, WorldUI, ButtonUI;
 
     Vector3 positionAwal, posDone, posCam2;
+    Quaternion rotationAwal, rotation1, rotation2, rotation3;
 
     Transform selectedObj, pasangan, opPasang;
 
     public Collider CaseCollider;
 
+    public int kesalahan;
+    float currentTime = 0f;
+    bool startTimer;
+
     void Awake()
     {
         Time.timeScale = 1f;
-        // txt = GetComponent<TextMeshProUGUI>();
         posDone = dump.position;
         posCam2 = cam2.position;
-        //rend = GetComponent<SpriteRenderer>();
         startTimer = false;
+        rotation1 = Quaternion.Euler(0,0,180);
+        rotation2 = Quaternion.Euler(0,180,0);
+        rotation3 = Quaternion.Euler(-180,0,0);
     }
 
     void Update()
@@ -65,15 +67,12 @@ public class Raycast : MonoBehaviour
         }
         
         var ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 1));
-
         RaycastHit hit;
 
         //objek raycast
         if (Physics.Raycast(ray,out hit, Mathf.Infinity))
         {
-            // Debug.Log(hit.collider.gameObject.name + " Hit Something");
             selection = hit.transform;
-
             if (selection.CompareTag(selectableTag))
             {
                 var selectionRenderer = selection.GetComponent<Renderer>();
@@ -86,7 +85,6 @@ public class Raycast : MonoBehaviour
             {
                 selection = null;
             }
- 
             _selection = selection;
         }
         else
@@ -123,9 +121,6 @@ public class Raycast : MonoBehaviour
         //tembak raycast
         if (Physics.Raycast(ray,out hit, Mathf.Infinity))
         {
-            // Debug.Log(hit.collider.gameObject.name + " Hit Something");
-            
-
             if (hit.transform.CompareTag(selectableTag))
             {
                 tembak = hit.transform;
@@ -134,17 +129,12 @@ public class Raycast : MonoBehaviour
             {
                 tembak = null;
             }
- 
         }
         else
         {
             tembak = null;
         }
         ObjekDitangan();
-
-        //Debug.Log(MOBOCASE.activeSelf);
-        //Debug.Log(PSU.activeSelf);
-        //Debug.Log(HDD.activeSelf);
 
         //Case Tag
         if(MOBOCASE.activeSelf && PSU.activeSelf && HDD.activeSelf)
@@ -164,13 +154,11 @@ public class Raycast : MonoBehaviour
             KSATA.transform.gameObject.tag = "Selectable";
         }
             
-        //Debug.Log(!panel1.activeSelf && !panel2.activeSelf && !panel3.activeSelf && !panel4.activeSelf);    
         if(startTimer == true)
         {
             currentTime += Time.deltaTime;
             TimeSpan time = TimeSpan.FromSeconds(currentTime);
             timeTXT.text = time.ToString(@"mm\:ss\:fff");
-            Debug.Log(currentTime);
         }
         Summary();
     }
@@ -180,16 +168,15 @@ public class Raycast : MonoBehaviour
         //mengambil 
         if (selectedObj == null && selection != null && selection.name != "CASE" && selection.name != "MOBO CASE")
         {
-            positionAwal = selection.position;
             startTimer = true;
+            positionAwal = selection.position;
+            rotationAwal = selection.gameObject.transform.rotation;
             selectedObj = selection;
-            //pasangan = null;
-            //opPasang = null;
+
+
             SELECT.SetActive(false);
             PLACE.SetActive(true);
         }
-
-        
     }
 
     public void ObjekDitangan() 
@@ -203,15 +190,28 @@ public class Raycast : MonoBehaviour
             }
             else
             {
-                selectedObj.position = cameraTarget.position;
+                //selectedObj.position = cameraTarget.position;
+                selectedObj.parent = GrabParent.transform;
+                selectedObj.localPosition = new Vector3(0f, 0f, 0f);
+                
+                if(selectedObj.name == "PSU" || selectedObj.name == "VGA")
+                {
+                    selectedObj.localRotation= rotation1;
+                }
+
+                if(selectedObj.name == "MOBO")
+                {
+                    selectedObj.localRotation= rotation2;
+                }
+
+                if(selectedObj.name == "HDD" || selectedObj.name == "CPU" || selectedObj.name == "HSF")
+                {
+                    selectedObj.localRotation= rotation3;
+                }
+                
             }
-            
-            // txt.text = "Pasang";
         }
-        else 
-        {
-            // txt.text = "Ambil";
-        }
+        else {}
     }
 
     public void Lepas()
@@ -219,18 +219,20 @@ public class Raycast : MonoBehaviour
         if(selectedObj != null)
         {
             var selectkabel = selectedObj.GetComponent<Renderer>();
-            selectedObj.position = positionAwal;
             selectkabel.material = defaultMaterial;
+
+            selectedObj.parent = GOParent.transform;
+            selectedObj.position = positionAwal;
+            selectedObj.rotation = rotationAwal;
             selectedObj = null;
+
             if(pasangan != null || opPasang != null)
             {
                 pasangan = null;
                 opPasang = null;
             }
-            
             Switcher();
         }
-        
         
     }
 
@@ -245,10 +247,12 @@ public class Raycast : MonoBehaviour
         if(selectedObj != null && pasangan == null && tembak !=null)
         {
              pasangan = tembak;
+             opPasang = tembak;
         }
 
         if(selectedObj != null && opPasang == null && Option != null)
         {
+            pasangan = Option;
             opPasang = Option;
         }
 
@@ -457,9 +461,8 @@ public class Raycast : MonoBehaviour
         if(K12Pasang.activeSelf && K24Pasang.activeSelf && K8Pasang.activeSelf && KFPPasang.activeSelf && KSATAPasang.activeSelf && KPowSataPasang.activeSelf)
         {
             Time.timeScale = 0f;
-            
+            ButtonUI.SetActive(false);
             Hasil.SetActive(true);
-            //txt = GetComponent<TextMeshProUGUI>();
             txt.text = "Total Waktu : " + timeTXT.text +"\nTotal Kesalahan : " + kesalahan;
         }
     }
