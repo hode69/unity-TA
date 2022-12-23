@@ -2,24 +2,12 @@
     "m_SelectedDeviceId": "ec1f9a8e7d15",
     "m_SelectedPackage": {
         "deviceId": "ec1f9a8e7d15",
-        "name": "com.DefaultCompany.Myproject",
-        "processId": 11492,
+        "name": "com.Marselianus.SimRakitPC",
+        "processId": 27801,
         "exited": false
     },
     "m_SelectedPriority": 0,
     "m_KnownPackagesForSerialization": [
-        {
-            "deviceId": "ec1f9a8e7d15",
-            "name": "com.DefaultCompany.Myproject",
-            "processId": 5790,
-            "exited": true
-        },
-        {
-            "deviceId": "ec1f9a8e7d15",
-            "name": "com.DefaultCompany.Myproject",
-            "processId": 31209,
-            "exited": true
-        },
         {
             "deviceId": "ec1f9a8e7d15",
             "name": "com.DefaultCompany.Myproject",
@@ -42,12 +30,42 @@
             "deviceId": "ec1f9a8e7d15",
             "name": "com.android.settings",
             "processId": 13648,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "ec1f9a8e7d15",
             "name": "com.DefaultCompany.Myproject",
             "processId": 11492,
+            "exited": true
+        },
+        {
+            "deviceId": "ec1f9a8e7d15",
+            "name": "com.unity3d.mobileremote",
+            "processId": 19988,
+            "exited": false
+        },
+        {
+            "deviceId": "ec1f9a8e7d15",
+            "name": "com.Marselianus.SimRakitPC",
+            "processId": 5356,
+            "exited": false
+        },
+        {
+            "deviceId": "ec1f9a8e7d15",
+            "name": "com.Marselianus.SimRakitPC",
+            "processId": 9756,
+            "exited": false
+        },
+        {
+            "deviceId": "ec1f9a8e7d15",
+            "name": "com.Marselianus.SimRakitPC",
+            "processId": 20153,
+            "exited": false
+        },
+        {
+            "deviceId": "ec1f9a8e7d15",
+            "name": "com.Marselianus.SimRakitPC",
+            "processId": 27801,
             "exited": false
         }
     ],
